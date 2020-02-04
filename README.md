@@ -3,7 +3,7 @@ move the downloaded attachemnts into the case directory and try to
 extract them. 
 For this to work you need to preced the original filename with 
 
-  "SFSC<casnumber>_" 
+  "SFSC\<casnumber\>_" 
 
 when downloading a attachment (in the download dialog of the browser).
 
@@ -32,7 +32,7 @@ To install the SFSCextractor script you need to
    the file should contain
 
 -------~/.SFSCextractorrc--------------
-# the folder where you download the SFSC attachments
+```# the folder where you download the SFSC attachments
 # e.g. your browsers default download folder
 DOWNLOAD_FOLDER=~/Downloads
 
@@ -40,7 +40,7 @@ DOWNLOAD_FOLDER=~/Downloads
 CASES_FOLDER=/hdhome/SFSC 
 
 # loglevel 1=errors 2=verbose
-LOGLEVEL=1 
+LOGLEVEL=1```
 ---------------------------------------
 
 3. copy the SFSCextractor.sh into bin/ of your home
