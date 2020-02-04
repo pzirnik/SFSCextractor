@@ -40,7 +40,8 @@ DOWNLOAD_FOLDER=~/Downloads
 CASES_FOLDER=/hdhome/SFSC 
 
 # loglevel 1=errors 2=verbose
-LOGLEVEL=1```
+LOGLEVEL=1
+```
 ---------------------------------------
 
 3. copy the SFSCextractor.sh into bin/ of your home
