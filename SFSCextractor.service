@@ -1,0 +1,9 @@
+[Unit]
+Description=Start SFSCextractor
+
+[Service]
+Type=simple
+ExecStart=/%h/bin/SFSCextractor.sh
+
+[Install]
+WantedBy=default.target
