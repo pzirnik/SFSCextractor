@@ -1,0 +1,13 @@
+#SFSC-direct_download_link.js
+
+This userscript does only work on the "view all attachments" page.
+To activate the "hack" you need to do a click somewhere on the page
+that is NOT a link, this triggers the script which does following:
+
+* add the prefix tag for SFSCextractor the the breadcrumb navigation,
+  so you can easy cut&paste it from there.
+
+* it does modify the link to the attachment that you can right click
+  on the attachment and choose "save as" to directly download it.
+  (as the SFSC internal logic still does capture a normal click
+   on the attachment link it will still open the preview window)
