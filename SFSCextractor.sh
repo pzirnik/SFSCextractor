@@ -51,7 +51,13 @@ handle_file() {
                                 /usr/bin/gunzip ${REALNAME} || log 1 "Could not ungzip ${CASES_FOLDER}/${CASENO}/${REALNAME}" 
                         fi
                         ;;
-
+                *x-xz*)
+                        if is_tar ${REALNAME} ; then
+                                /usr/bin/tar xf ${REALNAME} || log 1 "Could not untar ${CASES_FOLDER}/${CASENO}/${REALNAME}"
+                        else
+                                /usr/bin/unxz ${REALNAME} || log 1 "Could not unxz ${CASES_FOLDER}/${CASENO}/${REALNAME}"
+                        fi
+                        ;;
 		*x-tar*)
 			/usr/bin/tar xf ${REALNAME} || log 1 "Could not untar ${CASES_FOLDER}/${CASENO}/${REALNAME}" 
 			;;
