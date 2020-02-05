@@ -17,8 +17,8 @@ needs to be namend
 
   SFSC0012345_supportconfig_1234567891.tar.gz
 
-There is a also a set of userscripts that help you
-you can find them here:
+There is a also a set of userscripts that help,
+they in the js folder or you find them there:
 
 https://greasyfork.org/en/users/438027-paul-zirnik
 
