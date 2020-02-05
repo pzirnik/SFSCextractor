@@ -1,9 +1,9 @@
 [Unit]
-Description=Start SFSCextractor
+Description=Start SFSCextractor instance
 
 [Service]
 Type=simple
-ExecStart=/%h/bin/SFSCextractor.sh
+ExecStart=/usr/bin/SFSCextractor.sh
 
 [Install]
 WantedBy=default.target

@@ -46,22 +46,32 @@ LOGLEVEL=1
 
 3. copy the SFSCextractor.sh into bin/ of your home
 
-  cp SFSCextractor.sh ~/bin/
-  chmod 755 SFSCextractor.sh
+```
+  sudo cp SFSCextractor.sh /usr/bin/
+  sudo chmod 755 /usr/bin/SFSCextractor.sh
+```
 
-4. copy the startscript to .config/systemd/user of your home
+4. copy the startscript to global systemd users directory
 
-  mkdir -p ~/.config/systemd/user
-  cp SFSCextractor.service ~/.config/systemd/user
+```
+  sudo cp SFSCextractor@.service /usr/lib/systemd/user/
+```
 
 5. reload systemd at userspace
 
+```
   systemctl --user daemon-reload
+```
 
-6. enable the service
+6. create a instance from the service for your user
 
-  systemctl --user enable SFSCextractor.service
+```
+  mkdir -p ~/.config/systemd/user
+  systemctl --user enable SFSCextractor@$USER.service
+```
 
 7. start the service or relogin
 
-  systemctl --user start SFSCextractor.service
+```
+  systemctl --user start SFSCextractor@$USER.service
+```
