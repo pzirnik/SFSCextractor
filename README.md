@@ -1,7 +1,7 @@
 SFSCextractor will automaticaly create a case directory,
 move the downloaded attachemnts into the case directory and try to
 extract them. 
-For this to work you need to preced the original filename with 
+For this to work you need to precede the original filename with 
 
   "SFSC\<casnumber\>_" 
 
@@ -44,7 +44,7 @@ LOGLEVEL=1
 ```
 ---------------------------------------
 
-3. copy the SFSCextractor.sh into bin/ of your home
+3. copy the SFSCextractor.sh into /usr/bin/ 
 
 ```
   sudo cp SFSCextractor.sh /usr/bin/
