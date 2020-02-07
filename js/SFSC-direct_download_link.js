@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        SFSC direct download link
 // @description create direct download links in SFSC 
-// @version     1.1
+// @version     1.2
 // @grant       none
 // @include     https://suse.lightning.force.com/*
 // @namespace   https://greasyfork.org/users/438027
@@ -21,20 +21,23 @@ function find_attachment_link(link) {
     link.href="https://suse.my.salesforce.com/sfc/servlet.shepherd/document/download/"+id[1]+"?operationContext=S1";
   }
   if (link.className==="forceBreadCrumbItem") {
-  	if(link.title.match(/^[0-9]{8,}/)) {
-        var parentOL = link.parentElement.parentElement;
-        if (parentOL.childElementCount == 2) {
-    		var newtitle="SFSC"+link.title+"_";
-        	link.title=newtitle;
-        	var newLI = parentOL.appendChild(document.createElement('li'));
-        	newLI.setAttribute("class", "slds-breadcrumb__item slds-line-height--reset");
-        	var newSPAN1 = newLI.appendChild(document.createElement('span'));
-        	var newSPAN2 = newLI.appendChild(document.createElement('span'));
-        	newSPAN1.innerHTML="&nbsp;&nbsp;";
-        	newSPAN2.setAttribute("class", "forceBreadCrumbItem uiOutputText");
-        	newSPAN2.innerHTML=newtitle;
+	if(link.title.match(/^[0-9]{8,}/)) {
+		var parentOL = link.parentElement.parentElement;
+        	if (parentOL.childElementCount == 2) {
+          		if (parentOL.parentElement.nextSibling.title=="Attachments") {
+          			parentOL.parentElement.nextSibling.innerHTML+=" for "+link.title;
+          		}
+			var newtitle="SFSC"+link.title+"_";
+        		link.title=newtitle;
+        		var newLI = parentOL.appendChild(document.createElement('li'));
+        		newLI.setAttribute("class", "slds-breadcrumb__item slds-line-height--reset");
+        		var newSPAN1 = newLI.appendChild(document.createElement('span'));
+        		var newSPAN2 = newLI.appendChild(document.createElement('span'));
+        		newSPAN1.innerHTML="&nbsp;&nbsp;";
+        		newSPAN2.setAttribute("class", "forceBreadCrumbItem uiOutputText");
+        		newSPAN2.innerHTML=newtitle;
+    		}
     	}
-    }
   }
 }
 
