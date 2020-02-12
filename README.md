@@ -43,8 +43,9 @@ On chrome you need:
 On firefox you need:
 
 1. browse to about:addons
-2. click on the small gear to the right and select "install addons from file"
-3. select the SFSCextension-0.0.1.zip
+2. click on the small gear to the right and select "debug add-ons"
+3. click on "Load addon temporarily"
+4. select the SFSCextension-0.0.4.zip
 
 
 Then run the install script
