@@ -17,12 +17,43 @@ needs to be namend
 
   SFSC0012345_supportconfig_1234567891.tar.gz
 
-There is a also a set of userscripts that help,
-they in the js folder or you find them there:
 
-https://greasyfork.org/en/users/438027-paul-zirnik
+To install SFSC extractour you need to:
 
-To install the SFSCextractor script you need to
+either download and extract the zip archive from
+
+   https://github.com/pzirnik/SFSCextractor/archive/0.0.1.zip
+
+and extraxt the archive or clone the repostory
+
+```
+git clone https://github.com/pzirnik/SFSCextractor
+```
+
+next you need to install the browser extension:
+It is in the extension/ directory. 
+
+On chrome you need:
+
+1. browse to chrome://extensions
+2. enable developer mode (top right side)
+3. click "load unpacked"
+4. select the extension/ folder
+
+On firefox you need:
+
+1. browse to about:addons
+2. click on the small gear to the right and select "install addons from file"
+3. select the SFSCextension-0.0.1.zip
+
+
+Then run the install script
+
+```
+bash SFSCextrator/install.sh
+```
+
+or do the install steps manual
 
 1. make sure you have installed "inotify-tools" on the system
 
@@ -75,3 +106,11 @@ LOGLEVEL=1
 ```
   systemctl --user start SFSCextractor@$USER.service
 ```
+
+If everything is up and running, in the "view all attachments page"
+
+- just right click on a attachment and choose "Handle with SFSCextractor"
+- the download dialog will open and filesname is already prepared to be handled with SFSCextractor
+- once the donwload is finished the file will be copied to a folder matching the Casenumber below your CASES_FOLDER
+- if the downloaded attachment is an archive it will be extracted.
+
