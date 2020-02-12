@@ -9,7 +9,7 @@ function findCaseNo(link) {
 	var caseno = 0;
 	var i;
 	var filename = "";
-	console.log(links.length);
+	//console.log(links.length);
 	for(i=0;i<links.length;i++) {
 		if (links[i].className=="forceBreadCrumbItem") {
 			if (links[i].title.match(/^[0-9]{8,}/)) {

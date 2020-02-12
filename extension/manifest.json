@@ -1,7 +1,7 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "SFSChandler",
-  "description": "Handle links with SFSCexttractor",
+  "description": "Handle links with SFSCextractor",
   "permissions": ["storage", "downloads", "contextMenus", "activeTab"],
   "icons": {"24": "SFSCextractor.png"},
   "background": {
