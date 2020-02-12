@@ -18,7 +18,7 @@ needs to be namend
   SFSC0012345_supportconfig_1234567891.tar.gz
 
 
-To install SFSC extractour you need to:
+To install SFSCextractor you need to:
 
 either download and extract the zip archive from
 
@@ -110,7 +110,7 @@ LOGLEVEL=1
 If everything is up and running, in the "view all attachments page"
 
 - just right click on a attachment and choose "Handle with SFSCextractor"
-- the download dialog will open and filesname is already prepared to be handled with SFSCextractor
-- once the donwload is finished the file will be copied to a folder matching the Casenumber below your CASES_FOLDER
+- the download dialog will open and filename is already prepared to be handled with SFSCextractor
+- once the download is finished the file will be copied to a folder matching the Casenumber below your CASES_FOLDER
 - if the downloaded attachment is an archive it will be extracted.
 
