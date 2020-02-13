@@ -89,8 +89,15 @@ inotifywait -m ${DOWNLOAD_FOLDER} -e attrib -e moved_to --exclude '.*\.(crdownlo
 	if [ ! -z "${CASENO}"  ] ; then
 		log 2 "Caseno for ${DIR}/${FILE} is ${CASENO}" 
 		if [ ${ACTION} == "ATTRIB" ] ; then
+			# firefox sometimes does use CLOSE_WRITE prior the download
+			# has been started at all. So i did wait for ATTRIB
+ 			# that is called shorty after the first CLOSE_WRITE,
+			# followed by the final CLOSE_WRITE. However the later move into the
+			# cases folder also triggers a ATTRIB. So i need to add a timeout
+			# for now until i find a better approach. 5 Minutes should be
+			# enough for max 35 MB attachments to download
 			log 2 "Waiting for CLOSE_WRITE action on ${DIR}/${FILE}"
-			( inotifywait ${DIR}/${FILE} -e close_write -qq && 
+			( inotifywait ${DIR}/${FILE} -e close_write -qq -t 300 && 
 				(handle_file ${FILE} ${CASENO} ) &) &
 		else 
 			( handle_file ${FILE} ${CASENO} ) &	
