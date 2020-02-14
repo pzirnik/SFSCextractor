@@ -9,8 +9,11 @@ echo "Installing inotify-tools ..."
 sudo zypper install -y inotify-tools
 } 
 
-echo "Creating ~/.SFSCextractorrc ..." 
-cat <<"EOF" > ~/.SFSCextractorrc 
+# check if file exist to not overwrite
+# the user settings on update
+if [ ! -f ~/.SFSCextractorrc ] ; then 
+	echo "Creating ~/.SFSCextractorrc ..." 
+	cat <<"EOF" > ~/.SFSCextractorrc 
 # e.g. your browsers default download folder
 DOWNLOAD_FOLDER=~/Downloads
 
@@ -20,6 +23,7 @@ CASES_FOLDER=/$USER/SFSC
 # loglevel 1=errors 2=verbose
 LOGLEVEL=1
 EOF
+fi
 
 echo "Copying SFSCextractor.sh to /usr/bin/" 
 sudo cp $(dirname "$(realpath "$0")")/SFSCextractor.sh /usr/bin/
