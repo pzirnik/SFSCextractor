@@ -37,7 +37,7 @@ On chrome you need:
 
 1. just install the extension from webstore
 
-  https://https://chrome.google.com/webstore/search/sfschandler
+  https://chrome.google.com/webstore/search/sfschandler
 
 On firefox you need:
 
