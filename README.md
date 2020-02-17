@@ -35,10 +35,9 @@ It is in the extension/ directory.
 
 On chrome you need:
 
-1. browse to chrome://extensions
-2. enable developer mode (top right side)
-3. click "load unpacked"
-4. select the extension/ folder
+1. just install the extension from webstore
+
+  https://https://chrome.google.com/webstore/search/sfschandler
 
 On firefox you need:
 

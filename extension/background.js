@@ -18,7 +18,7 @@ function handleDownload (response) {
         //console.log(response.url);
 	//console.log(response.caseno);	
 	//console.log(response.filename);
-	if (response.caseno > 0 && response.filename.length >= 3) {
+	if (response.caseno > 0 && response.filename.length >= 1) {
 		var id = response.url.match(/\/ContentDocument\/(.*)\/view$/);
 		if (!id) {
 			id = response.url.match(/\/document\/download\/(.*)\?/);
