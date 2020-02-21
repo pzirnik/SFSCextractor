@@ -22,7 +22,12 @@ CASES_FOLDER=/$HOME/SFSC
 
 # loglevel 1=errors 2=verbose
 LOGLEVEL=1
+
+# fix tar archive rights 1=yes 0=no
+FIX_ARCHIVE_RIGHTS=1
 EOF
+else
+	grep "FIX_ARCHIVE_RIGHTS" ~/.SFSCextractorrc || echo -e "\n# fix tar archive rights 1=yes 0=no\nFIX_ARCHIVE_RIGHTS=1\n" >> ~/.SFSCextractorrc
 fi
 
 echo "Copying SFSCextractor.sh to /usr/bin/" 

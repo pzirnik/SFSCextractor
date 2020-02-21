@@ -70,6 +70,9 @@ CASES_FOLDER=/hdhome/SFSC
 
 # loglevel 1=errors 2=verbose
 LOGLEVEL=1
+
+# fix tar archive rights 1=yes 0=no
+FIX_ARCHIVE_RIGHTS=1
 ```
 ---------------------------------------
 
