@@ -1,52 +1,59 @@
 #
-# Written by Ahmad Al Zayed - Feb 12, 2029
-# Taken from Tami Instructions  
+# Last update Feb 21, 2020 
 #
 
-rpm -q inotify-tools 2> /dev/null 
-[[ $? -eq 1 ]] && {
-echo "Installing inotify-tools ..." 
-sudo zypper install -y inotify-tools
-} 
+install () { 
+  rpm -q inotify-tools 2> /dev/null 
+  [[ $? -eq 1 ]] && {
+    echo "Installing inotify-tools ..." 
+    sudo zypper install -y inotify-tools
+  } 
+} #end install 
 
-# check if file exist to not overwrite
-# the user settings on update
-if [ ! -f ~/.SFSCextractorrc ] ; then 
-	echo "Creating ~/.SFSCextractorrc ..." 
-	cat <<"EOF" > ~/.SFSCextractorrc 
-# e.g. your browsers default download folder
-DOWNLOAD_FOLDER=~/Downloads
+config () {
 
-# the folder with your cases
-CASES_FOLDER=/$HOME/SFSC 
+  CONFIG="$HOME/.SFSCextractorrc" 
+  NEWCONFIG="$(dirname "$(realpath "$0")")/.SFSCextractorrc" 
 
-# loglevel 1=errors 2=verbose
-LOGLEVEL=1
+  # check if file exist to not overwrite
+  # the user settings on update
+  [[ ! -f $CONFIG ]] && {
+	  echo "Creating $CONFIG ..." 
+    cp -p $NEWCONFIG $CONFIG 
+  } || #Let us compaire 
+    [[ $(md5sum $CONFIG $NEWCONFIG|cut -f1 -d" " |sort -u |wc -l) -eq 2 ]] && {
+      diff -y $CONFIG $NEWCONFIG 
+      read -p "The $CONFIG is diffrent than initial version, compaire above 
+      output. Should I replace your $CONFIG? (y/N)" 
+      [[ "${REPLY,,}" == "y" ]] && { cp -p $NEWCONFIG $CONFIG ;} 
+    }
+} #end config 
 
-# fix tar archive rights 1=yes 0=no
-FIX_ARCHIVE_RIGHTS=1
-EOF
-else
-	grep "FIX_ARCHIVE_RIGHTS" ~/.SFSCextractorrc || echo -e "\n# fix tar archive rights 1=yes 0=no\nFIX_ARCHIVE_RIGHTS=1\n" >> ~/.SFSCextractorrc
-fi
+systemd () {
+  echo "Copying SFSCextractor.sh to /usr/bin/" 
+  sudo cp $(dirname "$(realpath "$0")")/SFSCextractor.sh /usr/bin/
+  sudo chmod 755 /usr/bin/SFSCextractor.sh
+  
+  echo "Copying the startscript to global systemd users directory..." 
+  sudo cp $(dirname "$(realpath "$0")")/SFSCextractor@.service /etc/systemd/user/
+  sudo chmod 744 /etc/systemd/user/SFSCextractor@.service 
+  
+  echo "reload systemd at userspace" 
+  systemctl --user daemon-reload
+  
+  echo "create a instance from the service for your user" 
+  mkdir -p ~/.config/systemd/user
+  systemctl --user enable SFSCextractor@$USER.service
+  
+  echo "start the service ..."
+  systemctl --user start SFSCextractor@$USER.service
+  
+  echo "Let us check ..." 
+  systemctl --user status SFSCextractor@$USER.service
+} #end systemd 
 
-echo "Copying SFSCextractor.sh to /usr/bin/" 
-sudo cp $(dirname "$(realpath "$0")")/SFSCextractor.sh /usr/bin/
-sudo chmod 755 /usr/bin/SFSCextractor.sh
+main (){
+  install ; config ; systemd 
+}
 
-echo "Copying the startscript to global systemd users directory..." 
-sudo cp $(dirname "$(realpath "$0")")/SFSCextractor@.service /etc/systemd/user/
-sudo chmod 744 /etc/systemd/user/SFSCextractor@.service 
-
-echo "reload systemd at userspace" 
-systemctl --user daemon-reload
-
-echo "create a instance from the service for your user" 
-mkdir -p ~/.config/systemd/user
-systemctl --user enable SFSCextractor@$USER.service
-
-echo "start the service ..."
-systemctl --user start SFSCextractor@$USER.service
-
-echo "Let us check ..." 
-systemctl --user status SFSCextractor@$USER.service
+main 
