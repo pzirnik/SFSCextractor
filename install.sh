@@ -2,6 +2,23 @@
 # Last update Feb 21, 2020 
 #
 
+defaultConfig (){
+  NEWCONFIG="$(dirname "$(realpath "$0")")/.SFSCextractorrc" 
+  cat <<"EOF" > $NEWCONFIG
+# e.g. your browsers default download folder
+DOWNLOAD_FOLDER=~/Downloads
+
+# the folder with your cases
+CASES_FOLDER=/$HOME/SFSC 
+
+# loglevel 1=errors 2=verbose
+LOGLEVEL=1
+
+# fix tar archive rights 1=yes 0=no
+FIX_ARCHIVE_RIGHTS=1
+  EOF 
+} #end defaultConfig 
+
 install () { 
   rpm -q inotify-tools 2> /dev/null 
   [[ $? -eq 1 ]] && {
