@@ -70,7 +70,7 @@ systemd () {
 } #end systemd 
 
 main (){
-  install ; config ; systemd 
+  install ; defaultConfig; config ; systemd 
 }
 
 main 
