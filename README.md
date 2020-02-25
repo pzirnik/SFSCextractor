@@ -17,8 +17,8 @@ needs to be namend
 
   SFSC0012345_supportconfig_1234567891.tar.gz
 
-To help you doing this there is a browser exntension
-named "SFSChandler" you need to add it to your browser.
+To help you doing this there is a browser extension
+named "SFSChandler", you need to add it to your browser.
 
 However there two types of attachments in Salesforce.
 
@@ -34,7 +34,7 @@ job at least little bit easyier.
 
 To install SFSCextractor you need to:
 
-either download iand extract the zip archive from
+either download and extract the zip archive from
 
    https://github.com/pzirnik/SFSCextractor/archive/0.0.1.zip
 
@@ -79,7 +79,7 @@ There some userscripts in the js/ folder or online at
 
 you need to install the "SFSC direct download link"  
 in greasemonkey or tampermonkey. If this is done, reload your
-borsers tab and now you can do following:
+birowser tab and now you can do following:
 
 1. In your browser settings choose "always ask for download location"
 
@@ -91,7 +91,7 @@ borsers tab and now you can do following:
 
 4. click on the attachment
 
-5. no the download dialog will open and allow you to change the download folder
+5. now the download dialog will open and allow you to change the download folder
    and also the filename. Just paste the text prior the filename. Now SFSCextractor
    can also handle this downloads.
 
