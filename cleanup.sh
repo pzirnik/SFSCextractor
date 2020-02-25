@@ -1,6 +1,5 @@
 #
 # Written by Ahmad Al Zayed - Feb 12, 2029
-# Taken from Tami Instructions1
 #
 
 systemctl --user stop SFSCextractor@$USER.service
