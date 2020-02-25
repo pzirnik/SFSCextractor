@@ -1,0 +1,15 @@
+{
+  "version": "0.0.5",
+  "name": "SFSChandler",
+  "description": "Handle links with SFSCextractor",
+  "permissions": ["storage", "downloads", "contextMenus", "activeTab"],
+  "icons": {"24": "SFSCextractor.png"},
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+	"matches": ["https://suse.lightning.force.com/*"],
+	"js": ["content.js"]
+  }],
+  "manifest_version": 2
+}
