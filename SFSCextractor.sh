@@ -161,31 +161,33 @@ fi
 # MOVED_TO we get if the download is moved from the tmp location.
 # If we get ATTRIB we need to wait for a CLOSE_WRITE that indicates download is
 # finished
-ATTRIB_SEEN=0
 ${INOTIFY} -m "${DOWNLOAD_FOLDER}" -e attrib -e moved_to -e close_write -e moved_from --exclude '.*\.(crdownload)|(part)$' -q | while read DIR ACTION FILE ; do
-	log 2 "${FUNCNAME[0]}: ${ACTION} action for ${DIR}/${FILE}"
+	log 2 "${FUNCNAME[0]}: ${ACTION} action for ${DIR}${FILE}"
 	# only take care on files with special name
 	# extract the casenumber already for later use
 	CASENO=$(echo "${FILE}" | sed -ne "s/^SFSC\([0-9]\{8,\}\)_.*$/\1/p")
 	if [ ! -z "${CASENO}"  ] ; then
+    FILE_VAR=$(echo "${FILE}" | tr -d -c "a-zA-Z0-9_")
+    VAR_CONTENT="${FILE_VAR}"
 		case ${ACTION} in
-			"CLOSED_WRITE")
-				if [ "${ATTRIB_SEEN}" -eq 1 ] ; then
-					log 2 "${FUNCNAME[0]}: Caseno for ${DIR}/${FILE} is ${CASENO}"
-					ATTRIB_SEEN=0
+			"CLOSE_WRITE,CLOSE")
+        log 2 "${FUNCNAME[0]}: FILE_VAR=${FILE_VAR} VAR_CONTENT=${!VAR_CONTENT}"
+				if [ "${!VAR_CONTENT}" == "1" ] ; then
+					log 2 "${FUNCNAME[0]}: Caseno for ${DIR}${FILE} is ${CASENO}"
+					eval "unset ${FILE_VAR}"
 					(handle_file "${FILE}" "${CASENO}") &
 				fi
 				;;
 			"ATTRIB")
-				ATTRIB_SEEN=1
+        eval "${FILE_VAR}='1'"
 				;;
 			"MOVED_TO")
-				log 2 "${FUNCNAME[0]}: Caseno for ${DIR}/${FILE} is ${CASENO}"
-				ATTRIB_SEEN=0
+				log 2 "${FUNCNAME[0]}: Caseno for ${DIR}${FILE} is ${CASENO}"
+        eval unset ${FILE_VAR}
 				(handle_file "${FILE}" "${CASENO}") &
 				;;
 			*)
-				ATTRIB_SEEN=0
+        eval unset ${FILE_VAR}
 				;;
 		esac 
 	fi
