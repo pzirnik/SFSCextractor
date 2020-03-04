@@ -58,10 +58,19 @@ On firefox you need:
 
   https://addons.mozilla.org/en-US/firefox/addon/sfschandler/
 
-Then run the install script in the SFSCextractor folder
+For offline/manual installation you can also find the browserextention in
+/usr/share/doc/packages/SFSCextractor/extension/ if you installed from rpm.
+
+If you use RPM based installation of SFSCextractor run
 
 ```
-./install.sh
+SFSCextractor-setup.sh
+```
+
+When doing manual installtion run the install script from the SFSCextractor folder
+
+```
+./SFSCextractor-setup.sh
 ```
 
 If everything is up and running, in the "related -> attachments" tab and the "view all attachments" page
