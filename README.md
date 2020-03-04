@@ -64,13 +64,13 @@ For offline/manual installation you can also find the browserextention in
 If you use RPM based installation of SFSCextractor run
 
 ```
-/usr/share/doc/packages/SFSCextractor/install.sh
+SFSCextractor-setup.sh
 ```
 
 When doing manual installtion run the install script from the SFSCextractor folder
 
 ```
-./install.sh
+./SFSCextractor-setup.sh
 ```
 
 If everything is up and running, in the "related -> attachments" tab and the "view all attachments" page

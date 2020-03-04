@@ -143,14 +143,14 @@ GUNZIP=$(which gunzip)
 BUNZIP2=$(which bunzip2)
 UNRAR=$(which unrar)
 
-if [ -z ${TAR} -o -z ${UNZIP} -o -z ${UNXZ} -o -z ${GUNZIP} -o -z ${BUNZIP2} -o -z ${UNRAR} ] ; then
+if [ -z "${TAR}" -o -z "${UNZIP}" -o -z "${UNXZ}" -o -z "${GUNZIP}" -o -z "${BUNZIP2}" -o -z "${UNRAR}" ] ; then
 	echo "not all extractor tools are installed, check: tar, unzip, unxz, gunzip, bunzip2 and unrar"
 	exit 1
 fi
 
 INOTIFY=$(which inotifywait)
 
-if [ -z ${INOTIFY} ] ; then
+if [ -z "${INOTIFY}" ] ; then
 	echo "inotifywait is not instelled"
 	exit 1
 fi
@@ -183,11 +183,11 @@ ${INOTIFY} -m "${DOWNLOAD_FOLDER}" -e attrib -e moved_to -e close_write -e moved
 				;;
 			"MOVED_TO")
 				log 2 "${FUNCNAME[0]}: Caseno for ${DIR}${FILE} is ${CASENO}"
-        eval unset ${FILE_VAR}
+        eval "unset ${FILE_VAR}"
 				(handle_file "${FILE}" "${CASENO}") &
 				;;
 			*)
-        eval unset ${FILE_VAR}
+        eval "unset ${FILE_VAR}"
 				;;
 		esac 
 	fi
