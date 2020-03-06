@@ -3,7 +3,7 @@ move the downloaded attachemnts into the case directory and try to
 extract them. 
 For this to work you need to precede the original filename with 
 
-  "SFSC\<casnumber\>_" 
+  "SFSC\<casenumber\>_" 
 
 when downloading a attachment (in the download dialog of the browser).
 
@@ -34,7 +34,12 @@ job at least little bit easyier.
 
 To install SFSCextractor you need to:
 
-either download and extract the zip archive from
+Add the SFSCextrator repostory to your repository collection.
+Choose the one matching your installtion from
+
+https://build.opensuse.org/repositories/home:ntami:SFSCextractor
+
+or download and extract the zip archive from
 
    https://github.com/pzirnik/SFSCextractor/archive/0.0.1.zip
 
@@ -61,7 +66,7 @@ On firefox you need:
 For offline/manual installation you can also find the browserextention in
 /usr/share/doc/packages/SFSCextractor/extension/ if you installed from rpm.
 
-If you use RPM based installation of SFSCextractor run
+If you used RPM based installation of SFSCextractor run as user (NOT as root)
 
 ```
 SFSCextractor-setup.sh
