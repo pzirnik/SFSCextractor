@@ -13,10 +13,8 @@ function findCaseNo(link) {
 	var filenamespan;
 	//console.log(links.length);
 	for(i=0;i<links.length;i++) {
-		if (links[i].className=="forceBreadCrumbItem") {
-			if (links[i].title.match(/^[0-9]{8,}/)) {
-				marker = i;
-			}
+		if (links[i].title.match(/^[0-9]{8,}/)) {
+			marker = i;
 		}
 		if (link == links[i].href && marker != 0) {
 			caseno=links[marker].title;
